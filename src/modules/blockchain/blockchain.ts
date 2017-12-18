@@ -5,7 +5,7 @@ import { Miner } from '../miner/miner';
 
 export class Blockchain {
     public chain: Block[];
-    public DIFFICULTY: number = 2;
+    public DIFFICULTY: number = 5;
 
     constructor() {
         this.chain = [GENESIS_BLOCK()];
