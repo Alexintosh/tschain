@@ -34,14 +34,7 @@ cd node-typescript-boilerplate
 npm install
 ```
 
-or just download and unzip current `master` branch:
-
-```sh
-wget https://github.com/jsynowiec/node-typescript-boilerplate/archive/master.zip -O node-typescript-boilerplate
-unzip node-typescript-boilerplate.zip && rm node-typescript-boilerplate.zip
-```
-
-Now start adding your code in the `src` and unit tests in the `__tests__` directories. Have fun and build amazing things 🚀
+Build and run 🚀
 
 ### Unit tests in JavaScript
 

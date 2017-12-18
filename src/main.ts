@@ -1,35 +1,17 @@
-/**
- * Some predefined delays (in milliseconds).
- */
-export enum Delays {
-  Short = 500,
-  Medium = 2000,
-  Long = 5000,
-}
+import { Block } from './modules/blockchain/block';
+import { Blockchain } from './modules/blockchain/blockchain';
 
-/**
- * Returns a Promise<string> that resolves after given time.
- *
- * @param {string} name - A name.
- * @param {number=} [delay=Delays.Medium] - Number of milliseconds to delay resolution of the Promise.
- * @returns {Promise<string>}
- */
-function delayedHello(name: string, delay: number = Delays.Medium): Promise<string> {
-  return new Promise<string>(
-    (resolve: (value?: string | PromiseLike<string>) => void) => setTimeout(
-      () => resolve(`Hello, ${name}`),
-      delay,
-    ),
-  );
-}
+const main = (() => {
+  console.log('Welcome to Typescript Chain');
 
-// Below are examples of using TSLint errors suppression
-// Here it is supressing missing type definitions for greeter function
+  const tsChain = new Blockchain();
+  tsChain.addBlock(new Block(1, new Date().getTime(), { amount: 4 }));
+  tsChain.addBlock(new Block(2, new Date().getTime(), { amount: 8 }));
 
-export async function greeter(name) { // tslint:disable-line typedef
-  // tslint:disable-next-line no-unsafe-any
-  console.log('sucaaa forte');
-  return console.log( await delayedHello(name, Delays.Long)) );
-}
+  console.log('Blockchain valid? ' + tsChain.isValid());
 
-greeter('TSchain');
+  console.log('Changing a block...');
+  tsChain.chain[1].payload = { amount: 100 };
+  console.log("Blockchain valid? " + tsChain.isValid());
+
+})();

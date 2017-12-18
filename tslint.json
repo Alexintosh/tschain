@@ -11,7 +11,11 @@
     "mocha-no-side-effect-code": false,
     "missing-jsdoc": false,
     "no-relative-imports": false,
+    "no-stateless-class": false,
     "export-name": false,
+    "no-console": false,
+    "function-name": false,
+    "no-default-export": false,
     "promise-function-async": false,
     "no-void-expression": false,
     "trailing-comma": [ // https://palantir.github.io/tslint/rules/trailing-comma/
