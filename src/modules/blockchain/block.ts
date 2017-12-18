@@ -5,18 +5,20 @@ const SHA256 = require('crypto-js/sha256');
 
 export interface IBlock {
     index: number;
-    previousHash: string;
+    prevHash: string;
     timestamp: number;
     nonce: number;
+    payload: {};
     //txs: Transaction[]
     hash: string;
 }
 
-export class Block {
+export class Block implements IBlock {
     public prevHash: string;
     public hash: string;
     public index: number;
     public timestamp: number;
+    public nonce: number = 0;
     public payload: {};
 
     constructor(index: number, timestamp: number, payload: {}, prevHash: string = '') {
@@ -30,13 +32,16 @@ export class Block {
     /**
      * There are different implementations of the hash algorithm,
      * see: https://en.bitcoin.it/wiki/Hashcash
+     *
+     * In this case we use the <nonce> to change the hash of our block
      */
     public genHash(): string {
+
         return SHA256(`
             ${this.index}
             ${this.prevHash}
             ${this.timestamp}
-            ${JSON.stringify(this.payload)}
+            ${JSON.stringify(this.payload) + this.nonce}
         `).toString();
     }
 
